@@ -1,0 +1,14 @@
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+</div>
+
+<% @books.each do |book| %>
+<div>
+  <%= link_to book_path(book.id) do %>
+  <% end %>
+  <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
+  <p>Title：<%= book.title %></p>
+  <p>Opinion：<%= book.opinion %></p>
+</div>
+<% end %>
