@@ -8,6 +8,7 @@
   <%= link_to book_path(book.id) do %>
   <% end %>
   <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
+  <p>ユーザーネーム：<%= book.user.name %></p>
   <p>Title：<%= book.title %></p>
   <p>Opinion：<%= book.opinion %></p>
 </div>
