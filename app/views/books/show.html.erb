@@ -21,17 +21,18 @@
     </div>
 
     <div class="col-md-8 offset-md-1">
-      <h2>Book detail</h2
+      <h2>Book detail</h2>
       <table class="table">
         <tbody>
-          <tr>
-  		      <td><%= image_tag @book.user.get_profile_image(100,100) %></td>
-  		      <p><%= @book.user.name %></p>
-  		      
-  		      <td><%= @book.title %></td>
-  		      <td<%= @book.body %>></td>
-  		    </tr>
-  		  </tbody>
+            <tr>
+              <td><%= image_tag @user.get_profile_image(100,100) %><br>
+              <%= @user.name %>
+              </td>
+              
+              <td><%= @book.title %></td>
+              <td><%= @book.body %></td>
+            </tr>
+          </tbody>
       </table>
     </div>
   

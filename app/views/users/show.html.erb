@@ -34,7 +34,10 @@
           <tbody>
             <tr>
               <td><%= image_tag book.user.get_profile_image(80,80) %></td>
-              <td><%= book.title %></td>
+              <td>
+                <a class="book_path" href="/books/:id"><%= book.title %></a>
+                  
+              </td>
               <td><%= book.body %></td>
             </tr>
           </tbody>
