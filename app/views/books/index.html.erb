@@ -9,7 +9,7 @@
       <%= link_to edit_user_path(@user) do %>
         <i class="fa-solid fa-user-gear"></i>
       <% end %>
-
+        
       <h1>New book</h1>
       <%= form_with model: @book do |f| %>
         <h4>Title</h4>
@@ -25,6 +25,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
+              <th></th>
               <th>Title</th>
               <th>Opinion</th>
             </tr>
@@ -32,6 +33,7 @@
           <% @books.each do |book| %>
           <tbody>
             <tr>
+              <td><%= image_tag book.user.get_profile_image(80,80) %></td>
               <td><%= book.title %></td>
               <td><%= book.body %></td>
             </tr>

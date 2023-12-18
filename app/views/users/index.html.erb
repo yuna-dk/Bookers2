@@ -29,11 +29,12 @@
               <th>name</th>
             </tr>
           </thead>
-          <% @users.each do |user| %>
+          <% @users.each do |book| %>
           <tbody>
             <tr>
               <td><%= image_tag @user.get_profile_image(80,80) %></td>
-              <td><%= user.name %></td>
+              <td><%= @user.name %></td>
+              
             </tr>
           </tbody>
           <% end %>
