@@ -3,10 +3,20 @@
     <div class="col-md-3">
       <h1>User info</h1>
       <%= image_tag @user.get_profile_image(100,100) %>
-      <h3>name <%= @user.name %></h3>
-      <h3>introduction </h3>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
 
-      <%= link_to edit_user_path(@user) do %>
+      <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-sm btn-block" do %>
         <i class="fa-solid fa-user-gear"></i>
       <% end %>
 
@@ -31,6 +41,8 @@
               
               <td><%= @book.title %></td>
               <td><%= @book.body %></td>
+              <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success" %></td>
+              <td><%= link_to "Destroy",book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %></td>
             </tr>
           </tbody>
       </table>
