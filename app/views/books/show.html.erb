@@ -5,7 +5,7 @@
       <table class="table">
         <tbody>
             <tr>
-              <td><%= image_tag @user.get_profile_image(100,100) %><br>
+              <td><%= link_to (image_tag @user.get_profile_image(100,100)), user_path(@user.id) %><br>
               <%= link_to @user.name, user_path(@user.id) %>
               </td>
 

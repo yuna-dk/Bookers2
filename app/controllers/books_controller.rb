@@ -38,6 +38,7 @@ class BooksController < ApplicationController
       flash[:notice] = "You have updated book successfully."
     redirect_to book_path(@book.id)
     else
+      @user = current_user
       flash.now[:notice] = "An error has occurred.Please try again later."
       render :new
     end

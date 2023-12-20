@@ -37,8 +37,8 @@ class UsersController < ApplicationController
       flash[:notice] = "You have updated user successfully."
     redirect_to user_path(@user.id)
     else
-      lash.now[:notice] = "An error has occurred.Please try again later."
-      render :new
+      flash.now[:notice] = "An error has occurred.Please try again later."
+      render template: "users/edit"
     end
   end
 
@@ -58,5 +58,5 @@ class UsersController < ApplicationController
       redirect_to books_path
     end
   end
-    
+
 end
