@@ -1,8 +1,36 @@
-<h1>New book</h1>
-<%= form_with model: @book do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %><br>
-  <%= f.submit 'Create Books' %>
+
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>error prohibited this obj from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
+
+<%= render 'list', books: @books %>
+
+    <div class="col-md-8 offset-md-1">
+      <h1>Books</h1>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </tr>
+          </thead>
+          <% @books.each do |book| %>
+          <tbody>
+            <tr>
+              <td><%= image_tag book.user.get_profile_image(80,80) %></td>
+              <td><%= link_to book.title, book_path(book.id) %></td>
+              <td><%= book.body %></td>
+            </tr>
+          </tbody>
+          <% end %>
+          </table>
+    </div>
+  </div>
+</div>

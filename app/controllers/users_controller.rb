@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  
+  before_action :is_matching_login_user, only: [:edit, :update]
+
   def new
     @user = User.new
   end
-  
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
       render :new
     end
   end
-  
+
   def show
     @user = User.find(params[:id])
     @books = @user.books
@@ -32,12 +33,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params_update)
+    if @user.update(user_params_update)
+      flash[:notice] = "You have updated user successfully."
     redirect_to user_path(@user.id)
+    else
+      lash.now[:notice] = "An error has occurred.Please try again later."
+      render :new
+    end
   end
 
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :profile_image, :email)
   end
@@ -52,5 +58,5 @@ class UsersController < ApplicationController
       redirect_to books_path
     end
   end
-  
+    
 end
