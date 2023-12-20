@@ -9,7 +9,7 @@
   </ul>
 <% end %>
 
-<%= render 'list', books: @books %>
+<%= render 'list', { books: @books, user: @user} %>
 
     <div class="col-md-8 offset-md-1">
       <h1>Books</h1>
