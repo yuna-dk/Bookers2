@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
+  
   def new
     @book = Book.new
   end
@@ -13,7 +15,7 @@ class BooksController < ApplicationController
     else
       @user = current_user
       flash.now[:alert] = "An error has occurred.Please try again later"
-      render :new
+      render :index
     end
   end
 
@@ -40,7 +42,7 @@ class BooksController < ApplicationController
     else
       @user = current_user
       flash.now[:notice] = "An error has occurred.Please try again later."
-      render :new
+      render :edit
     end
   end
 
@@ -56,5 +58,12 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
 
+  def is_matching_login_user
+    @book = Book.find(params[:id])
+    user = User.find(@book.user_id)
+    unless user.id == current_user.id
+      redirect_to books_path
+    end
+  end
 
 end

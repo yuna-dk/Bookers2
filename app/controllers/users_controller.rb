@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @user = current_user
+
   end
 
   def update
@@ -38,7 +39,7 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
     else
       flash.now[:notice] = "An error has occurred.Please try again later."
-      render template: "users/edit"
+      render :edit
     end
   end
 
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
-      redirect_to books_path
+      redirect_to user_path(current_user.id)
     end
   end
 

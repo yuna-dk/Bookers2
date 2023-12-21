@@ -1,4 +1,13 @@
-<%= render 'list', books: @books %>
+<% if @book.errors.any? %>
+  <h2><%= @book.errors.count %>error prohibited this obj from being saved:</h2>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'books/list', book: @book, user: @user %>
 
     <div class="col-md-8 offset-md-1">
       <h1>Books</h1>
@@ -13,7 +22,7 @@
           <% @books.each do |book| %>
           <tbody>
             <tr>
-              <td><%= link_to (image_tag book.user.get_profile_image(80,80)), user_path(@user.id) %></td>
+              <td><%= link_to (image_tag book.user.get_profile_image(80,80)), user_path(book.user_id) %></td>
               <td><%= link_to book.title, book_path(book.id) %></td>
               <td><%= book.body %></td>
             </tr>
